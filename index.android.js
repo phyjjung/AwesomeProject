@@ -2,6 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  * @flow
+ *ㅇ요거 추가해서 함 보자고.ㄴ
  */
 
 import React, { Component } from 'react';
@@ -14,10 +15,10 @@ import {
 
 export default class AwesomeProject extends Component {
   render() {
-    return (
+    return (ㄴ
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native! gogogog!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
