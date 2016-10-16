@@ -10,17 +10,18 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View
+  View,
 } from 'react-native';
+
+import RootNavigator from './views/rootNavigator';
 
 class AwesomeProject extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          Welcome to React Native! gogogog!
-        </Text>
+
+          <RootNavigator ref="rootNavigator" />
+
       </View>
     );
   }
