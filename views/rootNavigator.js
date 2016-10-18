@@ -10,9 +10,15 @@ import {
   Text,
   View
 } from 'react-native';
+
+import Routes from '../Routes';
 import StyleVars from '../StyleVars';
 
 const styles = StyleSheet.create({
+  sceneContainer: {
+    flex: 1,
+    paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight
+  },
   navBar: {
     backgroundColor: "rgb(42, 55, 68)",
     borderBottomColor: "rgba(255,255,255,0.5)",
@@ -30,11 +36,6 @@ const styles = StyleSheet.create({
 });
 
 const routes = [
-  {
-  sceneContainer: {
-    flex: 1,
-    paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight
-  },
   {
     title: 'First Scene',
     rightButton: true,
@@ -100,8 +101,7 @@ export default class rootNavigator extends React.Component {
       //initialRoute와 initialRouteStack에서 받은 값이 앞으로 route변수가 된다.
       //여기서 hideNavigationBar를 보여주냐  마냐를 정하는 이유는 로그인 같은 페이지에서는 필요가 없어서임.
       <Navigator
-      initialRoute={routes[0]}
-      initialRouteStack={routes}
+      initialRoute={this._getInitialRoute()}
       renderScene={(route, navigator) => this.renderScene(route, navigator)}
       navigationBar={this.state.hideNavigationBar? null: navigationBar}
       configureScene={(route, routeStack) =>Navigator.SceneConfigs.FloatFromBottom}
@@ -122,5 +122,9 @@ export default class rootNavigator extends React.Component {
       <Text>Hello {route.title}!</Text>
       </TouchableHighlight>
     )
+  }
+
+  _getInitialRoute() {
+    return Routes.home();
   }
 }
