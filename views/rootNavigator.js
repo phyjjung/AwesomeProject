@@ -12,7 +12,10 @@ import {
 
 
 const styles = StyleSheet.create({
-
+  navBar: {
+      backgroundColor: "rgb(42, 55, 68)",
+      borderBottomColor: "rgba(255,255,255,0.5)",
+      borderBottomWidth: 1,}
 });
 
 const routes = [
@@ -48,11 +51,11 @@ export default class rootNavigator extends React.Component {
 
   render() {
 
-
+//routeMapper의 역할은 navigationBar의 버튼 타이틀을 지정한다.
     let navigationBar =(
       <Navigator.NavigationBar
       routeMapper={NavigationBarRouteMapper}
-
+ style={styles.navBar}
       />
     )
 
@@ -73,7 +76,7 @@ export default class rootNavigator extends React.Component {
         <Text>Hello {route.title}!</Text>
         </TouchableHighlight>
       }
-
+//여기서 hideNavigationBar를 보여주냐  마냐를 정하는 이유는 로그인 같은 페이지에서는 필요가 없어서임.
       navigationBar={this.state.hideNavigationBar? null: navigationBar}
       configureScene={(route, routeStack) =>
         Navigator.SceneConfigs.FloatFromBottom}
