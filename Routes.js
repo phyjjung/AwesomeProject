@@ -19,7 +19,7 @@ class Routes {
     return {
       name: "profile",
       title: "profile 입니다.",
-      component: profile,
+      component: Profile,
       leftButton: true,//LogoutButton,
       rightButton: true,//PostButton,
       hideNavigationBar: false,

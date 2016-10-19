@@ -10,10 +10,11 @@ import {
   Text,
   View
 } from 'react-native';
-
+import Home from '../Screens/Home';
 import Routes from '../Routes';
 import StyleVars from '../StyleVars';
 
+import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 const styles = StyleSheet.create({
   sceneContainer: {
     flex: 1,
@@ -112,15 +113,15 @@ export default class rootNavigator extends React.Component {
 
   renderScene(route, navigator) {
     return(
-      <TouchableHighlight onPress={() => {
-        if (route.index === 0) {
-          navigator.push(routes[1]);
-        } else {
-          navigator.pop();
-        }
-      }}>
-      <Text>Hello {route.title}!</Text>
-      </TouchableHighlight>
+      <ScrollableTabView
+            style={{marginTop: 20, }}
+            renderTabBar={() => <DefaultTabBar />}
+          >
+            <Text tabLabel='Tab #1'>My</Text>
+            <Text tabLabel='Tab #2'>favorite</Text>
+            <Text tabLabel='Tab #3'>project</Text>
+          </ScrollableTabView>
+
     )
   }
 

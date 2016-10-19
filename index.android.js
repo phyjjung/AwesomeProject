@@ -11,9 +11,12 @@ import {
   AppRegistry,
   StyleSheet,
   View,
+  Text
 } from 'react-native';
 
 import RootNavigator from './views/rootNavigator';
+
+
 
 class AwesomeProject extends React.Component {
   render() {
