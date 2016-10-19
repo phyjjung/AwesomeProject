@@ -11,13 +11,16 @@ import {
   View
 } from 'react-native';
 import Home from '../Screens/Home';
-import Routes from '../Routes';
+import Profile from '../Screens/Profile';
+//import Routes from '../Routes';
 import StyleVars from '../StyleVars';
 
-import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {CustomTabBar, } from 'react-native-scrollable-tab-view';
+
 const styles = StyleSheet.create({
-  sceneContainer: {
+  tabContainer: {
     flex: 1,
+    //아래의 paddingTop이 navibar만큰 유격을 두고  tab을 넣는다.
     paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight
   },
   navBar: {
@@ -40,11 +43,13 @@ const routes = [
   {
     title: 'First Scene',
     rightButton: true,
-    index: 0
+    index: 0,
+    Component : Home,
   },
   {
     title: 'Second Scene',
-    index: 1
+    index: 1,
+    Component : Profile
   },
 ];
 
@@ -102,30 +107,31 @@ export default class rootNavigator extends React.Component {
       //initialRoute와 initialRouteStack에서 받은 값이 앞으로 route변수가 된다.
       //여기서 hideNavigationBar를 보여주냐  마냐를 정하는 이유는 로그인 같은 페이지에서는 필요가 없어서임.
       <Navigator
-      initialRoute={this._getInitialRoute()}
+      initialRoute={routes[0]}
+      initialRouteStack={routes}
       renderScene={(route, navigator) => this.renderScene(route, navigator)}
       navigationBar={this.state.hideNavigationBar? null: navigationBar}
       configureScene={(route, routeStack) =>Navigator.SceneConfigs.FloatFromBottom}
-      style={{padding: 100}}
+      style={styles.tabContainer}
       />
     );
   }
 
   renderScene(route, navigator) {
     return(
-      <ScrollableTabView
-            style={{marginTop: 20, }}
-            renderTabBar={() => <DefaultTabBar />}
-          >
-            <Text tabLabel='Tab #1'>My</Text>
-            <Text tabLabel='Tab #2'>favorite</Text>
-            <Text tabLabel='Tab #3'>project</Text>
-          </ScrollableTabView>
+      // navigatiionbar 안쪽을  탭으로 만든다..
+      //<ScrollableTabView
+
+    //  renderTabBar={() => <CustomTabBar />}
+    //  >
+    <View>
+      <route.Component/>
+
+</View>
+      //</ScrollableTabView>
 
     )
   }
 
-  _getInitialRoute() {
-    return Routes.home();
-  }
+
 }
